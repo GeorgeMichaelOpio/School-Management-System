@@ -39,7 +39,7 @@ class User extends Authenticatable
      */
     protected function casts(): array
     {
-        return [
+        return [ 
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
@@ -47,6 +47,17 @@ class User extends Authenticatable
 
     static public function getEmailSingle($email){
         return User::where('email', $email)->first();
+    }
+
+    static public function getAdmin(){
+        return self::select('users.*')
+        ->where('role', 'admin')
+        ->where('is_deleted','0')
+        ->orderBy('id', 'desc')->get();
+    }
+
+    static public function getSingle($id){
+        return User::find($id);
     }
 
     static public function getTokenSingle($remember_token){

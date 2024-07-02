@@ -9,16 +9,16 @@ class DashboardController extends Controller
 {    public function dashboard()
     
     {
-        if (Auth::user()->name == 'Admin'){
+        if (Auth::user()->role == 'admin'){
             return view('admin.dashboard');
         }
-        else if (Auth::user()->name =='Student'){
+        else if (Auth::user()->role =='student'){
             return view('student.dashboard');
         }
-        else if (Auth::user()->name =='Teacher'){
+        else if (Auth::user()->role =='teacher'){
             return view('teacher.dashboard');
         }
-        else if (Auth::user()->name =='Parent'){
+        else if (Auth::user()->role =='parent'){
             return view('parent.dashboard');
         }
     }

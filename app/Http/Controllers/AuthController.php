@@ -15,16 +15,16 @@ class AuthController extends Controller
 {
     public function login (){
         if (!empty(Auth::check())){
-            if (Auth::user()->name == 'Admin'){
+            if (Auth::user()->role == 'admin'){
                 return redirect('admin/dashboard');
             }
-            else if (Auth::user()->name =='Student'){
+            else if (Auth::user()->role =='student'){
                 return redirect('student/dashboard');
             }
-            else if (Auth::user()->name =='Teacher'){
+            else if (Auth::user()->role =='teacher'){
                 return redirect('teacher/dashboard');
             }
-            else if (Auth::user()->name =='Parent'){
+            else if (Auth::user()->role =='parent'){
                 return redirect('parent/dashboard');
     
             }
@@ -39,16 +39,16 @@ class AuthController extends Controller
            $remember = !empty($request->remember) ? true : false;
 
            if (Auth::attempt(['email' => $request ->email, 'password' => $request ->password],$remember)) {
-            if (Auth::user()->name == 'Admin'){
+            if (Auth::user()->role == 'admin'){
                 return redirect('admin/dashboard');
             }
-            else if (Auth::user()->name =='Student'){
+            else if (Auth::user()->role =='student'){
                 return redirect('student/dashboard');
             }
-            else if (Auth::user()->name =='Teacher'){
+            else if (Auth::user()->role =='teacher'){
                 return redirect('teacher/dashboard');
             }
-            else if (Auth::user()->name =='Parent'){
+            else if (Auth::user()->role=='parent'){
                 return redirect('parent/dashboard');
     
             }

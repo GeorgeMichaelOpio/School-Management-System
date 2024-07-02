@@ -137,7 +137,7 @@
           <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
 
-          @if(Auth::user()->name == 'Admin')
+          @if(Auth::user()->role == 'admin')
           <li class="nav-item">
             <a href="{{ url('admin/dashboard') }}" class="nav-link @if(Request::segment(2)== 'dashboard') active @endif)">
               <i class="nav-icon fa fa-home"></i>
