@@ -1,7 +1,7 @@
 <div class="clear-both"></div>
 
 @if(!empty(session('success')))
-    <div class="alert alert-success alert-dismissible fade in" role="alert">
+    <div class="alert alert-success" role="alert">
         {{session('success')}}
     </div>
 @endif
