@@ -2,15 +2,43 @@
 
 @section('content')
 <br>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="container-fluid">
-  <div class="content-wrapper">@include('_message')
+  <div class="content-wrapper">
+    @include('_message')
     
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Search Admin</h3>
+      </div>
+      <form method="GET" action="">
+        <div class="card-body row">
+          <div class="form-group col-md-3">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name" value="{{Request::get('name')}}"  placeholder="Enter Name">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="email">Email address</label>
+            <input type="text" class="form-control" name="email" value="{{Request::get('email')}}" placeholder="Enter email">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" name="date" value="{{Request::get('date')}}" placeholder="Enter Date">
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          <button type="submit" class="btn btn-primary">Search</button>
+          <a href="{{url('admin/list')}}" class="btn btn-success">Clear</a>
+        </div>
+      </form>
+    </div>
+
     <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Admin List</h3>
+              <h3 class="card-title">Admin List (Total: {{$getRecord ->total()}})</h3>
 
             <div class="card-tools">
               <a href="{{ url('admin/add') }}" class='btn btn-primary'>Add Admin</a>
@@ -48,6 +76,12 @@
                   <!-- End of foreach -->
                 </tbody>
               </table>
+              <div style="padding: 10px; float:right">
+                {{ $getRecord->appends(request()->except('page'))->links() }}
+              </div>
+              
+
+
             </div>
             <!-- /.card-body -->
           </div>
