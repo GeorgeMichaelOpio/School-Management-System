@@ -16,11 +16,12 @@
               <div class="card-body">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" required placeholder="Enter Name">
+                    <input type="text" class="form-control" value="{{ old('name')}}" name="name" required placeholder="Enter Name">
               </div>
                 <div class="form-group">
                   <label for="email">Email address</label>
-                  <input type="email" class="form-control" name="email" required placeholder="Enter email">
+                  <input type="email" class="form-control" name="email" value="{{ old('email')}}"  required placeholder="Enter email">
+                  <div style="color: red">{{$errors->first('email')}}</div>
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
