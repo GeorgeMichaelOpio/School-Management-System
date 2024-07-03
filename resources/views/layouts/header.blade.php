@@ -154,8 +154,16 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/class/list') }}" class="nav-link @if(Request::segment(2)== 'class') active @endif)">
+              <i class="nav-icon fas fa-chalkboard-teacher"></i>
+              <p>
+                Class
+              </p>
+            </a>
+          </li>
 
-          @elseif(Auth::user()->name == 'Parent')
+          @elseif(Auth::user()->role == 'parent')
           <li class="nav-item">
             <a href="{{ url('parent/dashboard') }}" class="nav-link @if(Request::segment(2)== 'dashboard') active @endif)">
               <i class="nav-icon fa fa-home"></i>
@@ -165,7 +173,7 @@
             </a>
           </li>
 
-          @elseif(Auth::user()->name == 'Teacher')
+          @elseif(Auth::user()->role == 'teacher')
           <li class="nav-item">
             <a href="{{ url('teacher/dashboard') }}" class="nav-link  @if(Request::segment(2)== 'dashboard') active @endif)">
               <i class="nav-icon fa fa-home"></i>
@@ -175,7 +183,7 @@
             </a>
           </li>
 
-          @elseif(Auth::user()->name =='Student')
+          @elseif(Auth::user()->role =='student')
           <li class="nav-item">
             <a href="{{ url('student/dashboard') }}" class="nav-link  @if(Request::segment(2)== 'dashboard') active @endif)">
               <i class="nav-icon fa fa-home"></i>
