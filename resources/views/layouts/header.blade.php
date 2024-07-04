@@ -162,6 +162,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/subject/list') }}" class="nav-link @if(Request::segment(2)== 'subject') active @endif)">
+              <i class="nav-icon fas fa-chalkboard"></i>
+              <p>
+                Subject
+              </p>
+            </a>
+          </li>
 
           @elseif(Auth::user()->role == 'parent')
           <li class="nav-item">
