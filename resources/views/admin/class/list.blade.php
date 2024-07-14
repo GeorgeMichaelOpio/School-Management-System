@@ -50,8 +50,8 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Status</th>
-                    <th>Create Date</th>
                     <th>Create By</th>
+                    <th>Create Date</th>
                     <th>Action</th>
                   </tr>
                 </thead>
