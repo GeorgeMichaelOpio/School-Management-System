@@ -25,7 +25,20 @@ class StudentController extends Controller
     }
 
     public function insert(Request $request){
-        //dd($request->all());
+
+        request()->validate([
+            'email' => 'required|email|unique:users',
+            'height' => 'max:10',
+            'blood_group' => 'max:10',
+            'mobile_number' => 'max:15|min:10',
+            'religion' => 'max:50',
+            'gender' => 'max:50',
+            'weight' => 'max:10',
+            'admission_number' => 'max:50',
+            'roll_number' => 'max:50',
+
+        ]);
+        
         $student = new User;
         if(!empty($request->file('profile_picture')))
         {
