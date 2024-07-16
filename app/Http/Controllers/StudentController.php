@@ -15,7 +15,7 @@ class StudentController extends Controller
 {
     public function list(){
         $getRecord =User::getStudent();
-        return view('admin.student.list', ['getRecord' => $getRecord]);
+        return view('admin.student.list', ['getRecord' => $getRecord,]);
     }
 
     public function add(){
@@ -187,5 +187,19 @@ class StudentController extends Controller
 
         return redirect('admin/student/list')->with('success','Student Successfully Updated');
     }
+
+    public function delete($id){
+        $getRecord = User::getSingle($id);
+        if(!empty($getRecord)){
+        $getRecord->is_deleted =1;
+        $getRecord->save();
+
+        return redirect()->back()->with('success', "Student Deleted Successfully");
+        }
+        else{
+            abort(404);
+        }
+
+}
     
 }

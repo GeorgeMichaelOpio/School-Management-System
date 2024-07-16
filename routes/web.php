@@ -47,6 +47,7 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
     Route::post('admin/student/add', [StudentController::class,'insert']);
     Route::get('/admin/student/edit/{id}', [StudentController::class,'edit']);
     Route::post('/admin/student/edit/{id}', [StudentController::class,'update']);
+    Route::get('/admin/student/delete/{id}', [StudentController::class,'delete']);
 
 
     //Class Url

@@ -52,8 +52,17 @@
                 <thead>
                   <tr>
                     <th>ID</th>
+                    <th>Profile Picture</th>
                     <th>Name</th>
+                    <th>Gender</th>
                     <th>Email</th>
+                    <th>Status</th>
+                    <th>Mobile Number</th>
+                    <th>Admission Number</th>
+                    <th>Admmision Date</th>
+                    <th>Class</th>
+                    <th>Roll Number</th>
+                    <th>Religion</th>
                     <th>Create Date</th>
                     <th>Action</th>
                   </tr>
@@ -63,8 +72,27 @@
                   @foreach($getRecord as $value)
                   <tr>
                     <td>{{ $value->id }}</td>
-                    <td>{{ $value->name }}</td>
+                    <td>
+                        @if(!empty($value->getProfile()))
+                          <img src="{{ $value->getProfile()}}" style="width: 50px;Height:50px;border-radius:50%">
+                        @endif
+                    </td>
+                    <td>{{ $value->name }} {{ $value->last_name }}</td>
+                    <td>{{ $value->gender}}</td>
                     <td>{{ $value->email }}</td>
+                    <td>
+                      @if($value->status == 0 )
+                        Active
+                      @else
+                        Inactive
+                      @endif
+                    </td>
+                    <td>{{ $value->mobile_number}}</td>
+                    <td>{{ $value->admission_number}}</td>
+                    <td>{{ $value->admission_date}}</td>
+                    <td>{{ $value->class_name }}</td>
+                    <td>{{ $value->roll_number }}</td>
+                    <td>{{ $value->religion }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>
                       <a href="{{ url('admin/student/edit/'.$value->id) }}" class='btn btn-primary'>Edit</a>
