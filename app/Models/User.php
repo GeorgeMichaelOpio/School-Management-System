@@ -73,6 +73,31 @@ class User extends Authenticatable
         return  $return;
     }
 
+    static public function getParent(){
+        $return = self::select('users.*')
+                        ->where('role', 'parent')
+                        ->where('is_deleted','0');
+                        if(!empty(Request::get('email')))
+                        {
+                            $return =  $return->where('email','like', '%'.Request::get('email').'%');
+                        }
+                        if(!empty(Request::get('last_name')))
+                        {
+                            $return =  $return->where('last_name','like', '%'.Request::get('last_name').'%');
+                        }
+                        if(!empty(Request::get('name')))
+                        {
+                            $return =  $return->where('name','like', '%'.Request::get('name').'%');
+                        }
+                        if(!empty(Request::get('status')))
+                        {
+                            $return =  $return->where('users.status','=', Request::get('status'));
+                        }
+        $return =  $return->orderBy('id', 'desc')
+                            ->paginate(5); 
+        return  $return;
+    }
+
     static public function getStudent(){
         $return = self::select('users.*','class.name as class_name')
                         ->join('class','class.id','=','users.class_id','left')

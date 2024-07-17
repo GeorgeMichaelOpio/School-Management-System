@@ -174,7 +174,7 @@ class StudentController extends Controller
             $student-> religion = trim($request->religion);
         }
         $student-> status = trim($request->status);
-        if(!empty($request->caste))
+        if(!empty($request->mobile_number))
         {
             $student-> mobile_number = trim($request->mobile_number);
         }
