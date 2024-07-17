@@ -16,15 +16,19 @@
         <div class="card-body row">
           <div class="form-group col-md-3">
               <label for="name">Name</label>
-              <input type="text" class="form-control" name="name" value="{{Request::get('name')}}"  placeholder="Enter Name">
+              <input type="text" class="form-control" name="name" value="{{Request::get('name')}}"  placeholder="Name">
           </div>
           <div class="form-group col-md-3">
             <label for="email">Email address</label>
-            <input type="text" class="form-control" name="email" value="{{Request::get('email')}}" placeholder="Enter email">
+            <input type="text" class="form-control" name="email" value="{{Request::get('email')}}" placeholder="Email">
           </div>
           <div class="form-group col-md-3">
-            <label for="date">Date</label>
-            <input type="date" class="form-control" name="date" value="{{Request::get('date')}}" placeholder="Enter Date">
+            <label for="date">Admission Date</label>
+            <input type="date" class="form-control" name="admission_date" value="{{Request::get('admission_date')}}" placeholder="Admission Date">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="class">Class</label>
+            <input type="class" class="form-control" name="class" value="{{Request::get('class')}}" placeholder="Class">
           </div>
         </div>
         <div class="form-group col-md-3">

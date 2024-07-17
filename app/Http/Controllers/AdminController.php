@@ -62,9 +62,7 @@ public function update($id,Request $request ){
         }
         else{
 
-        }
-        
-       
+        } 
         $user->save();
 
         return redirect('admin/list')->with('success','Admin Successfully Updated');

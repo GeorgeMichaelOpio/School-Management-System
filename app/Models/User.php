@@ -78,6 +78,22 @@ class User extends Authenticatable
                         ->join('class','class.id','=','users.class_id','left')
                         ->where('users.role', 'student')
                         ->where('users.is_deleted','0');
+                        if(!empty(Request::get('email')))
+                        {
+                            $return =  $return->where('users.email','like', '%'.Request::get('email').'%');
+                        }
+                        if(!empty(Request::get('name')))
+                        {
+                            $return =  $return->where('users.name','like', '%'.Request::get('name').'%');
+                        }
+                        if(!empty(Request::get('admission_date')))
+                        {
+                            $return =  $return->whereDate('users.admission_date','=', Request::get('admission_date'));
+                        }
+                        if(!empty(Request::get('class')))
+                        { 
+                            $return =  $return->where('class.name','like','%'. Request::get('class').'%');
+                        }
         $return =  $return->orderBy('users.id', 'desc')
                             ->paginate(5);
         return  $return;
