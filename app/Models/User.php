@@ -140,4 +140,49 @@ class User extends Authenticatable
             return '';
         }
     }
+    
+    static public function getSearchStudent(){
+        if(!empty(Request::get('id')) || !empty(Request::get('name')) || !empty(Request::get('last_name')) || !empty(Request::get('email')) || !empty(Request::get('status'))){
+            $return = self::select('users.*','class.name as class_name','parent.name as parent_name')
+            ->join('users as parent','parent.id','=','users.parent_id','left')
+            ->join('class','class.id','=','users.class_id','left')
+            ->where('users.role', 'student')
+            ->where('users.is_deleted','0');
+            if(!empty(Request::get('id')))
+            {
+                $return =  $return->where('users.id','=',Request::get('id'));
+            }
+            if(!empty(Request::get('email')))
+            {
+                $return =  $return->where('users.email','like', '%'.Request::get('email').'%');
+            }
+            if(!empty(Request::get('name')))
+            {
+                $return =  $return->where('users.name','like', '%'.Request::get('name').'%');
+            }
+            if(!empty(Request::get('last_name')))
+            {
+                $return =  $return->where('users.last_name','like', '%'.Request::get('last_name').'%');
+            }
+            if(!empty(Request::get('status')))
+            { 
+                $return =  $return->where('users.status','like','%'. Request::get('status').'%');
+            }
+$return =  $return->orderBy('users.id', 'desc')
+                ->paginate(5);
+return  $return;
+        }
+}
+
+static public function getMyStudent($parent_id){
+    $return = self::select('users.*','class.name as class_name','parent.name as parent_name')
+    ->join('users as parent','parent.id','=','users.parent_id','left')
+    ->join('class','class.id','=','users.class_id','left')
+    ->where('users.role', 'student')
+    ->where('users.parent_id','=',$parent_id)
+    ->where('users.is_deleted','0')
+    ->orderBy('users.id', 'desc')
+    ->paginate(5);
+return  $return;
+}
 }

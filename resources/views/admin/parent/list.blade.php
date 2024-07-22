@@ -101,6 +101,7 @@
                     <td>
                       <a href="{{ url('admin/parent/edit/'.$value->id) }}" class='btn btn-primary'>Edit</a>
                       <a href="{{ url('admin/parent/delete/'.$value->id) }}" class='btn btn-danger'>Delete</a>
+                      <a href="{{ url('admin/parent/my-student/'.$value->id) }}" class='btn btn-primary'>My Student</a>
                     </td>
                   </tr>
                   @endforeach
