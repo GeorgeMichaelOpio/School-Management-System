@@ -98,6 +98,43 @@ class User extends Authenticatable
         return  $return;
     }
 
+    static public function getTeacher(){
+        $return = self::select('users.*')
+                        ->where('role', 'teacher')
+                        ->where('is_deleted','0');
+                        if(!empty(Request::get('email')))
+                        {
+                            $return =  $return->where('email','like', '%'.Request::get('email').'%');
+                        }
+                        if(!empty(Request::get('last_name')))
+                        {
+                            $return =  $return->where('last_name','like', '%'.Request::get('last_name').'%');
+                        }
+                        if(!empty(Request::get('date_of_joining')))
+                        {
+                            $return =  $return->whereDate('users.date_of_joining','=', Request::get('date_of_joining'));
+                        }
+                        if(!empty(Request::get('name')))
+                        {
+                            $return =  $return->where('name','like', '%'.Request::get('name').'%');
+                        }
+                        if(!empty(Request::get('status')))
+                        {
+                            $return =  $return->where('users.status','=', Request::get('status'));
+                        }
+                        if(!empty(Request::get('qualification')))
+                        {
+                            $return =  $return->where('users.qualification','=', Request::get('qualification'));
+                        }
+                        if(!empty(Request::get('work_experience')))
+                        {
+                            $return =  $return->where('users.work_experience','=', Request::get('work_experience'));
+                        }
+        $return =  $return->orderBy('id', 'desc')
+                            ->paginate(5); 
+        return  $return;
+    }
+
     static public function getStudent(){
         $return = self::select('users.*','class.name as class_name')
                         ->join('class','class.id','=','users.class_id','left')
@@ -185,4 +222,5 @@ static public function getMyStudent($parent_id){
     ->paginate(5);
 return  $return;
 }
+
 }

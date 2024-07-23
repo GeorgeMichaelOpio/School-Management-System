@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClassSubjectController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -49,6 +50,14 @@ Route::group(['middleware' => AdminMiddleware::class], function () {
     Route::get('/admin/student/edit/{id}', [StudentController::class,'edit']);
     Route::post('/admin/student/edit/{id}', [StudentController::class,'update']);
     Route::get('/admin/student/delete/{id}', [StudentController::class,'delete']);
+
+    //teacher
+    Route::get('admin/teacher/list', [TeacherController::class,'list']);
+    Route::get('admin/teacher/add', [TeacherController::class,'add']);
+    Route::post('admin/teacher/add', [TeacherController::class,'insert']);
+    Route::get('/admin/teacher/edit/{id}', [TeacherController::class,'edit']);
+    Route::post('/admin/teacher/edit/{id}', [TeacherController::class,'update']);
+    Route::get('/admin/teacher/delete/{id}', [TeacherController::class,'delete']);
 
     //parent
     Route::get('admin/parent/list', [ParentController::class,'list']);
