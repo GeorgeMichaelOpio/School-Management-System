@@ -12,6 +12,10 @@ class AssignClassTeacherModel extends Model
 
     protected $table = 'assign_class_teacher';
 
+    static public function getSingle($id){
+        return self::find($id);
+    }   
+
     static public function getAlreadyFirst($class_id, $teacher_id){
         return self::where('class_id','=',$class_id)->where('teacher_id','=',$teacher_id)->first();
     }
@@ -39,6 +43,26 @@ class AssignClassTeacherModel extends Model
 
         return $return;
 
+    }
+
+    static public function MySubjects($class_id){
+        $return = self::select('class_subject.*','subject.name as subject_name','subject.type as subject_type')
+        ->join('subject', 'subject.id','=','class_subject.subject_id')
+        ->join('class', 'class.id','=','class_subject.class_id')
+        ->join('users', 'users.id','=','class_subject.created_by')
+        ->where('class_subject.class_id','=',$class_id)
+        ->where('class_subject.is_deleted','=',0)
+        ->orderBy('class_subject.id','desc')
+        ->paginate(5);
+        return $return; 
+    }
+
+    static public function getAssignedTeacherID($class_id){
+        return self::where('class_id','=',$class_id)->where('is_deleted','=',0)->get();
+    }
+
+    static public function deleteTeacher($class_id) {
+        return self::where('class_id','=',$class_id)->delete();
     }
 
 
