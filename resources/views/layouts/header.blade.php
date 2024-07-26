@@ -290,6 +290,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ url('student/mysubjects') }}" class="nav-link @if(Request::segment(2)== 'mysubjects') active @endif)">
+              <i class="nav-icon fa fa-chalkboard"></i>
+              <p>
+                My Subjects
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ url('student/account') }}" class="nav-link @if(Request::segment(2)== 'myaccount') active @endif)">
               <i class="nav-icon fa fa-user"></i>
               <p>

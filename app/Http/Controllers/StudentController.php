@@ -199,7 +199,5 @@ class StudentController extends Controller
         else{
             abort(404);
         }
-
 }
-    
 }
