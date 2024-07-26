@@ -24,7 +24,9 @@
                         <th>Email</th>
                         <th>Class</th>
                         <th>Status</th>
-                        <th>Create Date</th>
+                        <th>Action</th>
+                        
+
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +49,9 @@
                             Inactive
                             @endif
                         </td>
-                        <td>{{ $value->created_at }}</td>
+                        <td>
+                            <a href="{{ url('/parent/mystudentsubject/'.$value->id) }}" class='btn btn-primary'>Subjects</a>
+                        </td>
                         </tr>
                         @endforeach
                     

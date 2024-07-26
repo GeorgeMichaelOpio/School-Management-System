@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SubjectModel;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ClassSubjectModel;
 
@@ -66,6 +67,13 @@ public function MySubjects(){
     
     $getRecord = ClassSubjectModel::MySubjects(Auth::user()->class_id);
     return view('student.mysubjects', ['getRecord' => $getRecord]);
+}
+
+public function my_studentsubject($student_id){
+    $user = User::getSingle($student_id);
+    $data['getuser'] = $user;
+    $data['getRecord'] = ClassSubjectModel::MySubjects($user->class_id);
+    return view('parent.mystudentsubject',$data);
 }
 
 }
