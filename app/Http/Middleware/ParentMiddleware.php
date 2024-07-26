@@ -17,7 +17,7 @@ class ParentMiddleware
     public function handle(Request $request, Closure $next): Response
     {   if(!empty(Auth::check()))
         {
-            if(Auth::user()->name == 'Parent'){
+            if(Auth::user()->role == 'parent'){
             return $next($request);
         }
         else{

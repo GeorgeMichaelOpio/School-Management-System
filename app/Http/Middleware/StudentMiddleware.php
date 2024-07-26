@@ -17,7 +17,7 @@ class StudentMiddleware
     public function handle(Request $request, Closure $next): Response
     {   if(!empty(Auth::check()))
         {
-            if(Auth::user()->name == 'Student'){
+            if(Auth::user()->role == 'student'){
             return $next($request);
         }
         else{

@@ -41,7 +41,7 @@ class SubjectController extends Controller
             abort(404);
         }
     }
- 
+    
     public function update(Request $request, $id){
         $save = SubjectModel::getSingle($id);
         $save->name = $request->name;
