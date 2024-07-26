@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ParentController extends Controller
 {
@@ -166,5 +167,13 @@ public function AssignStudentParentDelete($student_id){
     $student -> save();
     
     return redirect()->back()->with('success', "Student Successfully Unassigned from Parent");
+}
+
+public function my_student(){
+    $id = Auth::user()->id;
+    $data['getParent'] = User::getSingle($id);
+    $data['parent_id'] = $id;
+    $data['getRecord'] =User::getMyStudent($id);
+    return view('parent.my_student', $data);
 }
 }
